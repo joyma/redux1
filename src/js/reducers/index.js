@@ -15,11 +15,12 @@ function rootReducer(state = initialState, action) {
         );
     }
     else if (action.type === DEL_SOLUTION) {
+        // deletes by matching the Id in the payloads
         return Object.assign(
             {}, 
             state, 
             {
-                solutions: state.solutions.filter(item => item !== action.payload)
+                solutions: state.solutions.filter(item => item.id !== action.payload.id)
             }
         );
     }
