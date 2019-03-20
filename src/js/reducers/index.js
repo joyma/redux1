@@ -1,7 +1,8 @@
 import { ADD_SOLUTION, DEL_SOLUTION} from "../constants/action-types";
 
 const initialState = {
-    solutions: []
+    solutions: [],
+    remoteSolutions: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -14,7 +15,7 @@ function rootReducer(state = initialState, action) {
             }
         );
     }
-    else if (action.type === DEL_SOLUTION) {
+    if (action.type === DEL_SOLUTION) {
         // deletes by matching the Id in the payloads
         return Object.assign(
             {}, 
@@ -24,6 +25,11 @@ function rootReducer(state = initialState, action) {
             }
         );
     }
+    if (action.type === "DATA_LOADED") {
+        return Object.assign({}, state, {
+          remoteSolutions: state.remoteSolutions.concat(action.payload)
+        });
+      }
     return state;
 }
 

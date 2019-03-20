@@ -1,6 +1,7 @@
 // src/js/components/List.jsx
 import React from "react";
 import { connect } from "react-redux";
+import { getSolutions } from "../actions/index";
 
 const mapStateToProps = state => {
   return { solutions: state.solutions };
@@ -8,11 +9,13 @@ const mapStateToProps = state => {
 
 const ConnectedList = ({ solutions }) => (
   <ul className="list-group list-group-flush">
-    {solutions.map(el => (
+  {solutions.map(
+    el => (
       <li className="list-group-item" key={el.id}>
         {el.title}
       </li>
-    ))}
+    )
+  )}
   </ul>
 );
 const List = connect(mapStateToProps)(ConnectedList);

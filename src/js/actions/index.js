@@ -7,3 +7,13 @@ export function addSolution(payload) {
 export function delSolution(payload) {
   return { type: DEL_SOLUTION, payload };
 }
+
+export function getSolutions() {
+  return function(dispatch) {
+    return fetch("http://localhost:3000/solutions")
+    .then(response => response.json())
+    .then(json => {
+      dispatch({ type: "DATA_LOADED", payload: json });
+    });
+  };
+}
